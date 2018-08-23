@@ -3,16 +3,20 @@ const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
+const allTasksRoutes = require('./routes/allTasks')
 const openTasksRoutes = require('./routes/openTasks')
 const closedTasksRoutes = require('./routes/closedTasks')
 
 mongoose.connect('mongodb+srv://toDo:toDo123@cluster0-jw0or.mongodb.net/test?retryWrites=true')
 
+app.use(cors())
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
+app.use('/allTasks', allTasksRoutes)
 app.use('/openTasks', openTasksRoutes)
 app.use('/closedTasks', closedTasksRoutes)
 

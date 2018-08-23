@@ -9,6 +9,8 @@ router.post('/', ClosedTasksController.postClosedTask)
 
 router.get('/:taskId', ClosedTasksController.getClosedTaskByID)
 
-router.delete('/:taskId', ClosedTasksController.deleteClosedTaskByID)
+router.post('/patch/:taskId', ClosedTasksController.updateClosedTaskByID)
+
+router.post('/delete/:taskId', ClosedTasksController.deleteClosedTaskByID)
 
 module.exports = router

@@ -5,7 +5,7 @@ const taskSchema = mongoose.Schema({
     desc: String,
     category: {type: String, enum:['Open', 'Closed']},
     notes: String,
-    dueDate: Date,
+    dueDate: String,
     priority: {type: String, enum:['Low', 'Medium', 'High']}
 })
 

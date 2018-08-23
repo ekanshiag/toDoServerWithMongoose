@@ -55,6 +55,23 @@ exports.getClosedTaskByID = (req, res, next) => {
         })
 }
 
+exports.updateClosedTaskByID = (req, res, next) => {
+    const id = req.params.taskId
+    console.log(id)
+    Task.update({_id: id}, {$set: req.body})
+        .exec()
+        .then(result => {
+            console.log(result)
+            res.status(200).json({result})
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({
+                error: err
+            })
+        })
+}
+
 exports.deleteClosedTaskByID = (req, res, next) => {
     const id = req.params.taskId
     Task.remove({_id: id})

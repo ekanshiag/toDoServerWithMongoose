@@ -57,12 +57,7 @@ exports.getOpenTaskByID = (req, res, next) => {
 exports.updateOpenTaskByID = (req, res, next) => {
     const id = req.params.taskId
     console.log(id)
-    let updateOps = {}
-    for(let i of req.body){
-        updateOps[i.propName] = i.propValue
-    }
-    console.log(updateOps)
-    Task.update({_id: id}, {$set: updateOps})
+    Task.update({_id: id}, {$set: req.body})
         .exec()
         .then(result => {
             console.log(result)
