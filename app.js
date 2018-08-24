@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const path = require('path')
 
 const allTasksRoutes = require('./routes/allTasks')
 const openTasksRoutes = require('./routes/openTasks')
@@ -15,6 +16,12 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+
+app.use(express.static(path.join(__dirname, 'build')))
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
 
 app.use('/allTasks', allTasksRoutes)
 app.use('/openTasks', openTasksRoutes)
